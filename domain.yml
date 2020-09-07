@@ -1,0 +1,121 @@
+intents:
+- affirm
+- restaurant_search
+- greet
+- deny
+- goodbye
+- stop
+- send_email
+entities:
+- cuisine
+- location
+- price
+- minbudget
+- maxbudget
+- emailid
+
+slots:
+  cuisine:
+    type: text
+  location:
+    type: text
+  price:
+    type: text
+  minbudget:
+    type: float
+    initial_value: 0.0
+  maxbudget:
+    type: float
+    initial_value: 10000.0
+  valid_cuisine:
+    type: bool
+    initial_value: False
+  valid_budget_range:
+    type: bool
+    initial_value: False
+  valid_location:
+    type: bool
+    initial_value: False
+  resultsfound:
+    type: bool
+    initial_value: False
+  emailid:
+    type: text
+
+templates:
+  utter_ask_cuisine:
+  - text: What kind of cuisine would you prefer?
+    buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Mexican
+      title: Mexican
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  utter_ask_budget:
+  - text: What price range are you looking at?
+    buttons:
+    - title: Less than Rs.300
+      payload: /restaurant_search{"price":"Less than Rs.300"}
+    - title: Rs.300 to 700
+      payload: /restaurant_search{"price":"Rs.300 to 700"}
+    - title: More than Rs.700
+      payload: /restaurant_search{"price":"More than Rs.700"}   
+  - text: What's the average budget for two people?
+    buttons:
+    - title: Less than Rs.300
+      payload: /restaurant_search{"price":"Less than Rs.300"}
+    - title: Rs.300 to 700
+      payload: /restaurant_search{"price":"Rs.300 to 700"}
+    - title: More than Rs.700
+      payload: /restaurant_search{"price":"More than Rs.700"}
+  utter_default:
+  - text: I did not understand that.
+  utter_goodbye:
+  - text: Goodbye :)
+  - text: Bye-bye!
+  - text: Bon Appetit!
+  - text: Have a good one!
+  utter_greet:
+  - text: Hey there! How may i help you?
+  - text: Hello there! May I help you?
+  - text: Hi, How can I help you?
+  - text: Hey, How is it going. How May I help you Today?
+  utter_ask_sendemail:
+  - text: Should I send you details of all the restaurants on email?
+  - text: Would you like me send you details of all the restaurants on email?
+  - text: Do you want to get the details of the restaurants on email?
+  utter_email_sent:
+  - text: email sent.
+  utter_ask_emailid:
+  - text: To what email id should I send it to?
+  - text: Please share the email id.
+  utter_city_not_found:
+  - text: We do not operate in that area yet.  Can you please specify some other location?
+actions:
+- action_search_restaurants
+- action_check_budget
+- action_verify_location
+- action_verify_cuisine
+- action_send_email
+- utter_ask_sendemail
+- utter_ask_emailid
+- utter_email_sent
+- utter_ask_cuisine
+- utter_ask_budget
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_city_not_found
+- utter_default
+- utter_goodbye
+- utter_greet
