@@ -19,7 +19,7 @@ class ActionSearchRestaurants(Action):
 		return 'action_search_restaurants'
 		
 	def run(self, dispatcher, tracker, domain):
-		config={"user_key":"3e34705c21d061b234a03b546694ec13"}
+		config={"user_key":"3e34705c21d061b234a03b546694ec11"} # get this API Key from Zomato API site
 		zomato = zomatopy.initialize_app(config)
 		# Get all slot values
 		loc = tracker.get_slot('location')
